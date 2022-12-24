@@ -950,9 +950,12 @@ Public License instead of this License.  But first, please read
 	`)
 
 	if runtime.GOOS == "windows" {
-		cmd := exec.Command("type", "license.txt")
+		cmd := exec.Command("cmd", "/C", "more")
+		cmd.Stdin = strings.NewReader(licenseText)
 		cmd.Stdout = os.Stdout
-		cmd.Run()
+		if err := cmd.Run(); err != nil {
+			fmt.Println(err)
+		}
 	} else {
 		cmd := exec.Command("less", "-F")
 		cmd.Stdin = strings.NewReader(licenseText)
