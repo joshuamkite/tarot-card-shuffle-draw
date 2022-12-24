@@ -3,10 +3,14 @@ package main
 import (
 	"crypto/rand"
 	"fmt"
+	"os"
+	"os/exec"
+	"runtime"
 	"strconv"
+	"strings"
 
 	"github.com/MakeNowJust/heredoc"
-	"github.com/gerow/pager"
+
 	"github.com/manifoldco/promptui"
 )
 
@@ -945,7 +949,14 @@ Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
 	`)
 
-	pager.Open()
-	defer pager.Close()
-	fmt.Println(licenseText)
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("type", "license.txt")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	} else {
+		cmd := exec.Command("less", "-F")
+		cmd.Stdin = strings.NewReader(licenseText)
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
 }

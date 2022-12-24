@@ -14,7 +14,7 @@ if [[ -z "$package" ]]; then
     exit 1
 fi
 
-platforms=("linux/amd64" "darwin/arm64" "darwin/amd64")
+platforms=("linux/amd64" "darwin/arm64" "darwin/amd64" "windows/amd64")
 
 for platform in "${platforms[@]}"; do
     platform_split=(${platform//\// })
