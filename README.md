@@ -62,4 +62,4 @@ ok      github.com/joshuamkite/tarot-card-shuffle-draw  0.003s
 
 ## Subsequently
 
-Added interactive license display and made minor changes to output formatting
+Added interactive license display feature to comply with GPL 3.0; made minor changes to output formatting; added build script
